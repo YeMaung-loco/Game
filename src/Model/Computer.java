@@ -1,10 +1,11 @@
+package Model;
 import java.util.Vector;
 
-class Model_Computer {
+public class Computer {
 
 	Vector<Integer> computer_list;
 
-	public Model_Computer() {
+	public Computer() {
 		computer_list = new Vector<Integer>();
 	}
 

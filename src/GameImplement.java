@@ -46,7 +46,6 @@ public class GameImplement {
 	}
 
 	public String check(Vector<Integer> computer, Vector<Integer> player) {
-		System.out.println(computer + " vs " + player);
 		int h = 0, b = 0;
 		String msg = null;
 		for (int i = 0; i < computer.size(); i++) {

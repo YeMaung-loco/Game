@@ -7,14 +7,17 @@ import java.util.Vector;
 
 import javax.swing.JOptionPane;
 
+import Model.Computer;
+import Model.Player;
+
 public class Controller implements ActionListener, KeyListener {
-	private Model_Computer model_Computer;
+	private Computer model_Computer;
 	private View view;
-	private Model_Player model_Player;
+	private Player model_Player;
 	private int playTime;
 	private GameImplement gameImp;
 
-	public Controller(Model_Computer c, Model_Player p, View v) {
+	public Controller(Computer c, Player p, View v) {
 		this.model_Computer = c;
 		this.model_Player = p;
 		this.view = v;

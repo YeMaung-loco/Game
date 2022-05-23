@@ -1,13 +1,15 @@
+import Model.Computer;
+import Model.Player;
 
 public class Game {
-	static Model_Computer mComputer;
+	static Computer mComputer;
 	static View view;
-	static Model_Player mPlayer;
+	static Player mPlayer;
 
 	public static void main(String[] args) {
 		view = new View();
-		mComputer = new Model_Computer();
-		mPlayer = new Model_Player(view);
+		mComputer = new Computer();
+		mPlayer = new Player();
 		Controller controller = new Controller(mComputer, mPlayer, view);
 		controller.initController();
 
