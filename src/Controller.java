@@ -22,22 +22,25 @@ public class Controller implements ActionListener, KeyListener {
 		this.model_Player = p;
 		this.view = v;
 		gameImp = new GameImplement(v);
+		initController();
 		startGame();
 	}
 
 	private void startGame() {
-		playTime = 0;
 		Vector<Integer> v = gameImp.computerVector();
 		model_Computer.setMcomputer(v);
 
+		playTime = 0;
+
 		view.getTxtNumber().setText("");
 		view.getLblHb().setText("");
+		view.getLblHb().setBounds(135, 120, 150, 25);
 		view.getLblChance().setText("You have 10 chances.");
 		view.getLblChance().setForeground(Color.black);
 		view.getLblChance().setBounds(70, 150, 250, 25);
 	}
 
-	public void initController() {
+	private void initController() {
 		view.getBtnPlay().addActionListener(this);
 		view.getTxtNumber().addKeyListener(this);
 	}
@@ -57,6 +60,7 @@ public class Controller implements ActionListener, KeyListener {
 			view.getLblHb().setBounds(135, 120, 150, 25);
 			newGame("You win!");
 		} else {
+
 			playTime++;
 			int chance = 10 - playTime;
 
@@ -82,15 +86,17 @@ public class Controller implements ActionListener, KeyListener {
 		}
 	}
 
-	private void playerInput() { // userinput ko check
+	private void checkInput() { // userinput ko check
 
 		String numString = view.getTxtNumber().getText();
 		boolean checkString = numString.matches("[1-9]+");
 
 		if (numString.length() == 4 && !numString.contains(" ") && checkString) {
 			Vector<Integer> pVector = gameImp.playerVector(numString);
-			model_Player.setMplayer(pVector);
-			play(); // error ma shi yin play mal
+			if (pVector.size() == 4) { // error ma shi yin play mal
+				model_Player.setMplayer(pVector);
+				play();
+			}
 
 		} else {
 
@@ -122,30 +128,30 @@ public class Controller implements ActionListener, KeyListener {
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource().equals(view.getBtnPlay())) {
+			checkInput();
+		}
 
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			playerInput();
+			checkInput();
 		}
+
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().equals(view.getBtnPlay())) {
-			playerInput();
-		}
 
 	}
 
